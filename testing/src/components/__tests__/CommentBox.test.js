@@ -14,9 +14,9 @@ beforeEach(() => {
   );
 });
 
-it('has a text area and a button', () => {
+it('has a text area and two buttons', () => {
   expect(wrapped.find('textarea').length).toEqual(1);
-  expect(wrapped.find('button').length).toEqual(1);
+  expect(wrapped.find('button').length).toEqual(2);
 });
 
 it('has a text area that a user can type in', () => {
@@ -72,7 +72,3 @@ it('should call preventDefault on event when form is submitted', () => {
 afterEach(() => {
   wrapped.unmount();
 });
-
-// it('has comment list component', () => {
-//   expect(wrapped.find(CommentList)).toHaveLength(1);
-// });

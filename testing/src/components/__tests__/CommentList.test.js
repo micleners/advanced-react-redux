@@ -1,11 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount } from 'enzyme';
+
+import Root from 'Root';
 import CommentList from 'components/CommentList';
 
-it('shows a comment box', () => {
-  const div = document.createElement('div');
+let wrapped;
 
-  ReactDOM.render(<CommentList />, div);
+beforeEach(() => {
+  const initialState = {
+    comments: ['Comment 1', 'Comment 2']
+  }
+  wrapped = mount(
+    <Root initialState={initialState}>
+      <CommentList />
+    </Root>
+  );
+});
 
-  ReactDOM.unmountComponentAtNode(div);
+it('creates one li element per comment', () => {
+  expect(wrapped.find('li').length).toEqual(2)
+});
+
+it('creates comments with text visible on the screen', () => {
+  expect(wrapped.text()).toContain('Comment 1')
+  expect(wrapped.text()).toContain('Comment 2')
+});
+
+it('creates comments with text visible on the screen 2', () => {
+  expect(wrapped.render().text()).toContain('Comment 1')
+  expect(wrapped.render().text()).toContain('Comment 2')
 });
